@@ -21,5 +21,5 @@ public class Ator {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank
-    private Long nome;
+    private String nome;
 }

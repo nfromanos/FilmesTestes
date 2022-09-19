@@ -1,9 +1,8 @@
 package com.example.filmes.dominio;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -21,7 +20,7 @@ public class Filme {
     @NotBlank
     private String genero;
     @NotBlank
-    private Date dataDeLancamento;
+    private LocalDate dataDeLancamento;
     @OneToMany
     private List<Ator> listaAtores;
 

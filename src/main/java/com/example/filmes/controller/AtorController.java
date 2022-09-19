@@ -16,13 +16,19 @@ public class AtorController {
 
     @PostMapping
     public ResponseEntity<Ator> adicionaAtor(@RequestBody Ator ator) {
-        atorService.adicionaComposto(ator);
+        atorService.adicionaAtor(ator);
         return new ResponseEntity<>(ator, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ator> buscaCompostoPorId(@PathVariable Long id) {
+    public ResponseEntity<Ator> buscaAtorPorId(@PathVariable Long id) {
         Ator ator = atorService.buscaPorId(id);
+        return new ResponseEntity<>(ator, HttpStatus.OK);
+    }
+
+    @GetMapping("/{nome}")
+    public ResponseEntity<Ator> buscaAtorPorId(@PathVariable String nome) {
+        Ator ator = atorService.buscaPorNome(nome);
         return new ResponseEntity<>(ator, HttpStatus.OK);
     }
 
@@ -40,7 +46,7 @@ public class AtorController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Ator> removerAtor(@PathVariable Long id) {
-        Ator Composto = atorService.removeAtor(id);
-        return new ResponseEntity<>(Composto, HttpStatus.OK);
+        Ator ator = atorService.removeAtor(id);
+        return new ResponseEntity<>(ator, HttpStatus.OK);
     }
 }

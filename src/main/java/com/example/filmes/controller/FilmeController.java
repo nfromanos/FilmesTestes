@@ -14,15 +14,33 @@ public class FilmeController {
     private final FilmeService filmeService;
 
     @PostMapping
-    public ResponseEntity<Filme> adicionaRemedio(@RequestBody Filme filme) {
+    public ResponseEntity<Filme> adicionaFilme(@RequestBody Filme filme) {
         Filme filmeAdicionado = filmeService.adicionaFilme(filme);
         return new ResponseEntity<>(filmeAdicionado, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> buscaRemedioPorId(@PathVariable Long id) {
-        Filme remedio = filmeService.buscaPorId(id);
-        return new ResponseEntity<>(remedio, HttpStatus.OK);
+    public ResponseEntity<Filme> buscaFilmePorId(@PathVariable Long id) {
+        Filme filme = filmeService.buscaPorId(id);
+        return new ResponseEntity<>(filme, HttpStatus.OK);
+    }
+
+    @GetMapping("/{nome}")
+    public ResponseEntity<Filme> buscaFilmePorNome(@PathVariable String nome) {
+        Filme filme = filmeService.buscaPorNome(nome);
+        return new ResponseEntity<>(filme, HttpStatus.OK);
+    }
+
+    @GetMapping("/{genero}")
+    public ResponseEntity<Filme> buscaFilmePorGenero(@PathVariable String genero) {
+        List<Filme> filme = filmeService.buscaPorGenero(genero);
+        return new ResponseEntity<>(filme.get(0), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Filme> buscaFilmePorAnoLancamento(@PathVariable String ano) {
+        List<Filme> filme = filmeService.buscaPorAno(ano);
+        return new ResponseEntity<>(filme.get(0), HttpStatus.OK);
     }
 
     @PutMapping
@@ -32,13 +50,13 @@ public class FilmeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Filme>> listarRemedios() {
+    public ResponseEntity<List<Filme>> listarFilmes() {
         List<Filme> listaFilmes = filmeService.listarFilmes();
         return new ResponseEntity<>(listaFilmes, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Filme> removerRemedio(@PathVariable Long id) {
+    public ResponseEntity<Filme> removerFilme(@PathVariable Long id) {
         Filme filme = filmeService.removeFilme(id);
         return new ResponseEntity<>(filme, HttpStatus.OK);
     }
