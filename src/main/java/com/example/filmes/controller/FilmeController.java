@@ -37,7 +37,7 @@ public class FilmeController {
         return new ResponseEntity<>(filme.get(0), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{ano}")
     public ResponseEntity<Filme> buscaFilmePorAnoLancamento(@PathVariable String ano) {
         List<Filme> filme = filmeService.buscaPorAno(ano);
         return new ResponseEntity<>(filme.get(0), HttpStatus.OK);
